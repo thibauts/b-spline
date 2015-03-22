@@ -4,6 +4,8 @@ b-spline
 
 B-spline interpolation of control points of any dimensionality using [de Boor's algorithm](http://en.wikipedia.org/wiki/De_Boor%27s_algorithm).
 
+The interpolator can take a knot vector and a weight vector as input, effectively making the resulting curve a Non-Uniform Rational B-Spline (NURBS) if you wish so.
+
 Install
 -------
 
@@ -74,4 +76,4 @@ for(var t=0; t<1; t+=0.01) {
 
 <img src="http://i.imgur.com/flvmdds.png" />
 
-See [here](http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/RB-circles.html) for parameters reference.
+See [here](http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/RB-circles.html) for reference.
