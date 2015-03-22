@@ -35,10 +35,12 @@ for(var t=0; t<1; t+=0.01) {
 
 <img src="http://i.imgur.com/ew8CMVj.png" />
 
-Non-uniform rational. Params taken from (here)[http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/RB-circles.html]
+Non-uniform rational.
 
 ```javascript
 var bspline = require('b-spline');
+
+// see 
 
 var points = [
   [ 0.0, -0.5],
@@ -73,3 +75,5 @@ for(var t=0; t<1; t+=0.01) {
 ```
 
 <img src="http://i.imgur.com/flvmdds.png" />
+
+See [here](http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/spline/NURBS/RB-circles.html) for parameters reference.
