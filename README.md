@@ -40,8 +40,6 @@ Non-uniform rational.
 ```javascript
 var bspline = require('b-spline');
 
-// see 
-
 var points = [
   [ 0.0, -0.5],
   [-0.5, -0.5],
