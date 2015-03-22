@@ -64,8 +64,6 @@ function interpolate(t, order, points, knots, weights, result) {
       for(var j=0; j<d+1; j++) {
         v[i][j] = (1 - a) * v[i-1][j] + a * v[i][j];
       }
-
-      //console.log(JSON.stringify(v[i]))
     }
   }
 
