@@ -1,6 +1,6 @@
 {
   "name": "b-spline",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "B-spline interpolation",
   "author": "thibauts",
   "license": "MIT",
@@ -14,6 +14,10 @@
   },
   "keywords": [
     "b-spline",
-    "interpolation"
+    "interpolation",
+    "non-uniform",
+    "rational",
+    "nurbs",
+    "curve"
   ]
 }
