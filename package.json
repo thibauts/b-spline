@@ -1,0 +1,19 @@
+{
+  "name": "b-spline",
+  "version": "1.0.0",
+  "description": "B-spline interpolation",
+  "author": "thibauts",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thibauts/b-spline.git"
+  },
+  "keywords": [
+    "b-spline",
+    "interpolation"
+  ]
+}
