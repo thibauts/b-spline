@@ -85,6 +85,41 @@ for(var t=0; t<1; t+=0.01) {
 <img src="http://i.imgur.com/KqWdaNK.png" />
 
 
+#### Closed curves
+
+```javascript
+var bspline = require('b-spline');
+
+// Closed curves are built by repeating the `order` first 
+// control points at the end of the curve
+
+var points = [
+  [-1.0,  0.0],
+  [-0.5,  0.5],
+  [ 0.5, -0.5],
+  [ 1.0,  0.0],
+
+  [-1.0,  0.0],
+  [-0.5,  0.5],
+  [ 0.5, -0.5]
+];
+
+var order = 3;
+
+// and using an unclamped knot vector
+
+var knots = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+];
+
+for(var t=0; t<1; t+=0.01) {
+  var point = bspline(t, order, points, knots);
+}
+```
+
+<img src="http://i.imgur.com/npF2ke9.png" />
+
+
 #### Non-uniform rational
 
 ```javascript
