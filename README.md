@@ -21,8 +21,6 @@ Examples
 
 #### Unclamped knot vector
 
-Unclamped
-
 ```javascript
 var bspline = require('b-spline');
 
@@ -87,7 +85,7 @@ for(var t=0; t<1; t+=0.01) {
 <img src="http://i.imgur.com/KqWdaNK.png" />
 
 
-## Non-uniform rational
+#### Non-uniform rational
 
 ```javascript
 var bspline = require('b-spline');
@@ -108,7 +106,7 @@ var points = [
 ]
 
 // Here the curve is called non-uniform as the knots 
-// are not equally spaced :
+// are not equally spaced
 
 var knots = [
   0, 0, 0, 1/4, 1/4, 1/2, 1/2, 3/4, 3/4, 1, 1, 1
@@ -116,7 +114,7 @@ var knots = [
 
 var w = Math.pow(2, 0.5) / 2;
 
-// and rational as its control points have varying weights :
+// and rational as its control points have varying weights
 
 var weights = [
   1, w, 1, w, 1, w, 1, w, 1
@@ -138,7 +136,7 @@ Usage
 ### `bspline(t, order, points[, knots, weights])`
 
 * `t` position along the curve in the [0, 1] range
-* `order` order of the curve. Must be less than the number of control points. 2 is linear, 3 is quadratic, 4 is cubic, and so on.
+* `order` order of the curve. Must be less than or equal to the number of control points. 2 is linear, 3 is quadratic, 4 is cubic, and so on.
 * `points` control points that will be interpolated. Can be vectors of any dimensionality (`[x, y]`, `[x, y, z]`, ...)
-* `knots` optional knot vector. Define the interpolation intervals on `t` of the control points. Must be a non-decreasing sequence of `number of points + order` length values.
+* `knots` optional knot vector. Allow to modulate the control points interpolation spans on `t`. Must be a non-decreasing sequence of `number of points + order` length values.
 * `weights` optional control points weights. Must be the same length as the control point array.
