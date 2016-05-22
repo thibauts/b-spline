@@ -1,7 +1,4 @@
-
-
-function interpolate(t, degree, points, knots, weights, result) {
-
+function interpolate(t, degree, points, knots, weights, extra_dim_values) {
   var num_points = points.length;    // points count
   var dimensionality = points[0].length; // point dimensionality
 
@@ -22,8 +19,8 @@ function interpolate(t, degree, points, knots, weights, result) {
     for(var i=0; i<num_points+degree; i++) {
       knots[i] = i;
     }
-  } else {
-    if(knots.length !== num_points+degree) throw new Error('bad knot vector length');
+  } else if(knots.length !== num_points+degree){
+    throw new Error('bad knot vector length');
   }
 
   var domain = [
@@ -38,7 +35,8 @@ function interpolate(t, degree, points, knots, weights, result) {
 
   if(t < low || t > high) throw new Error('out of bounds');
 
-  for(var s=domain[0]; s<domain[1]; s++) {
+  var s;
+  for(s=domain[0]; s<domain[1]; s++) {
     if(t >= knots[s] && t <= knots[s+1]) {
       break;
     }
@@ -55,7 +53,7 @@ function interpolate(t, degree, points, knots, weights, result) {
   }
 
   // l (level) goes from 1 to the curve degree
-  for(var l=1; l<=degree; l++) {
+  for(var l=1; l<degree+1; l++) {
     // build level l of the pyramid
     for(var i=s; i>s-degree+l; i--) {
       var a = (t - knots[i]) / (knots[i+degree-l] - knots[i]);
@@ -68,7 +66,7 @@ function interpolate(t, degree, points, knots, weights, result) {
   }
 
   // convert back to cartesian and return
-  var result = result || new Array(dimensionality);
+  var result = extra_dim_values || new Array(dimensionality);
   for(var i=0; i<dimensionality; i++) {
     result[i] = v[s][i] / v[s][dimensionality];
   }
