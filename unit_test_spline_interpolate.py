@@ -2,7 +2,7 @@ from pprint import pprint
 
 from spline_interpolate import interpolate as py_interpolate
 import execjs
-js_interpolate = execjs.compile(open('index.js').read()).call
+js_interpolate = execjs.compile(open('spline_interpolate.js').read()).call
 
 test_data = (
 		{
