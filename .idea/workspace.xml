@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb74e2aa-c842-4311-8ab6-b6d2da6eb66d" name="Default" comment="" />
+    <list default="true" id="cb74e2aa-c842-4311-8ab6-b6d2da6eb66d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spline_interpolate.py" afterPath="$PROJECT_DIR$/spline_interpolate.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit_test_spline_interpolate.py" afterPath="$PROJECT_DIR$/unit_test_spline_interpolate.py" />
+    </list>
     <ignored path="b-spline.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

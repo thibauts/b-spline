@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from spline_interpolate import interpolate as py_interpolate
 import execjs
 js_interpolate = execjs.compile(open('index.js').read()).call
@@ -19,10 +21,26 @@ for td in test_data:
 		t = i / num_pt_checks
 		print('javascript')
 		js_pt = js_interpolate('interpolate', t, td['degree'], td['points'], td['knots'])
+		# pprint(js_pt)
+		print('domain', js_pt['domain'])
+		print('low', js_pt['low'])
+		print('high', js_pt['high'])
+		print('t', js_pt['t'])
+		print('s', js_pt['s'])
+		print('v_c')
+		pprint(js_pt['v_c'])
+		print('v')
+		pprint(js_pt['v'])
+		print('v2')
+		pprint(js_pt['v'])
+
 		print()
 		print('python')
 		py_pt = py_interpolate(t, td['degree'], td['points'], td['knots'])
 
-		if js_pt != py_pt:
-			print('js', js_pt, '!=', 'py', py_pt)
+		if js_pt['result'] != py_pt:
+			print('js', js_pt['result'], '!=', 'py', py_pt)
 			raise ValueError('not equivilent values')
+
+		print()
+		print()

@@ -21,7 +21,7 @@ def interpolate(t, degree, points, knots=None, weights=None, result=None):
 
 	domain = degree - 1, len(knots) - degree
 
-	print(domain)
+	print('domain', domain)
 
 	# remap t to the domain where the spline is defined
 	low, high = [knots[d] for d in domain]
@@ -39,16 +39,23 @@ def interpolate(t, degree, points, knots=None, weights=None, result=None):
 			break
 		s += 1
 
-	print(s)
+	print('s', s)
 
+	v_c = []
 	# convert points to homogeneous coordinates
 	v = [None] * num_points
 	for i in range(num_points):
 		v[i] = [None] * (dimensionality + 1)
 		for j in range(dimensionality):
 			v[i][j] = points[i][j] * weights[i]
+			v_c.append({'v[i][j]'.replace('i', str(i)).replace('j', str(j)): v[i][j]})
 		v[i][dimensionality] = weights[i]
+		v_c.append({'v[i][dimensionality]_d'.replace('dimensionality', str(dimensionality)).replace('i', str(i)): v[i][dimensionality]})
 
+	print('v_c')
+	pprint(v_c)
+
+	print('v')
 	pprint(v)
 	# print()
 
@@ -66,6 +73,9 @@ def interpolate(t, degree, points, knots=None, weights=None, result=None):
 				# print('v[i][j]', v[i][j])
 				# print()
 				v[i][j] = (1 - a) * v[i-1][j] + a * v[i][j]
+
+	print('v2')
+	pprint(v)
 
 	# convert back to cartesian and return
 	if result is None:
