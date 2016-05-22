@@ -23,8 +23,8 @@ def interpolate(t, degree, points, knots=None, weights=None, result=None):
 	low, high = [knots[d] for d in domain]
 	t = t * (high - low) + low
 
-	if not low <= t < high:
-		raise ValueError('out of bounds')
+	if not low <= t <= high:
+		raise ValueError('out of bounds', 'low', low, 'high', 't', t)
 
 	s = domain[0]
 	for i in range(domain[0], domain[1]):
