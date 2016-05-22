@@ -4,7 +4,7 @@
   "description": "B-spline interpolation",
   "author": "thibauts",
   "license": "MIT",
-  "main": "index.js",
+  "main": "spline_interpolate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

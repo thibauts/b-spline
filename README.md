@@ -16,6 +16,8 @@ Install
 $ npm install b-spline
 ```
 
+Now also has python implementation in spline_interpolate.py.
+
 Examples
 --------
 
