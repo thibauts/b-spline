@@ -31,22 +31,22 @@ var points = [
   [ 1.0,  0.0]
 ];
 
-var order = 3;
+var degree = 3;
 
 // As we don't provide a knot vector, one will be generated 
 // internally and have the following form :
 //
 // var knots = [0, 1, 2, 3, 4, 5, 6];
 //
-// Knot vectors must have `number of points + order` knots.
-// Here we have 4 points and the order is 3, so the knot vector 
+// Knot vectors must have `number of points + degree` knots.
+// Here we have 4 points and the degree is 3, so the knot vector 
 // length will be 7.
 //
 // This knot vector is called "uniform" as the knots are all spaced uniformly,
 // ie. the knot spans are all equal (here 1).
 
 for(var t=0; t<1; t+=0.01) {
-  var point = bspline(t, order, points);
+  var point = bspline(t, degree, points);
 }
 ```
 
@@ -65,12 +65,12 @@ var points = [
   [ 1.0,  0.0]
 ];
 
-var order = 3;
+var degree = 3;
 
 // B-splines with clamped knot vectors pass through 
 // the two end control points.
 //
-// A clamped knot vector must have `order` equal knots 
+// A clamped knot vector must have `degree` equal knots 
 // at both its beginning and end.
 
 var knots = [
@@ -78,7 +78,7 @@ var knots = [
 ];
 
 for(var t=0; t<1; t+=0.01) {
-  var point = bspline(t, order, points, knots);
+  var point = bspline(t, degree, points, knots);
 }
 ```
 
@@ -90,7 +90,7 @@ for(var t=0; t<1; t+=0.01) {
 ```javascript
 var bspline = require('b-spline');
 
-// Closed curves are built by repeating the `order` first 
+// Closed curves are built by repeating the `degree` first 
 // control points at the end of the curve
 
 var points = [
@@ -104,7 +104,7 @@ var points = [
   [ 0.5, -0.5]
 ];
 
-var order = 3;
+var degree = 3;
 
 // and using an unclamped knot vector
 
@@ -113,7 +113,7 @@ var knots = [
 ];
 
 for(var t=0; t<1; t+=0.01) {
-  var point = bspline(t, order, points, knots);
+  var point = bspline(t, degree, points, knots);
 }
 ```
 
@@ -155,10 +155,10 @@ var weights = [
   1, w, 1, w, 1, w, 1, w, 1
 ]
 
-var order = 3;
+var degree = 3;
 
 for(var t=0; t<1; t+=0.01) {
-  var point = bspline(t, order, points, knots, weights);
+  var point = bspline(t, degree, points, knots, weights);
 }
 ```
 
@@ -168,10 +168,10 @@ for(var t=0; t<1; t+=0.01) {
 Usage
 -----
 
-### `bspline(t, order, points[, knots, weights])`
+### `bspline(t, degree, points[, knots, weights])`
 
 * `t` position along the curve in the [0, 1] range
-* `order` order of the curve. Must be less than or equal to the number of control points. 2 is linear, 3 is quadratic, 4 is cubic, and so on.
+* `degree` degree of the curve. Must be less than or equal to the number of control points. 2 is linear, 3 is quadratic, 4 is cubic, and so on.
 * `points` control points that will be interpolated. Can be vectors of any dimensionality (`[x, y]`, `[x, y, z]`, ...)
-* `knots` optional knot vector. Allow to modulate the control points interpolation spans on `t`. Must be a non-decreasing sequence of `number of points + order` length values.
+* `knots` optional knot vector. Allow to modulate the control points interpolation spans on `t`. Must be a non-decreasing sequence of `number of points + degree` length values.
 * `weights` optional control points weights. Must be the same length as the control point array.
