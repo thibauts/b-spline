@@ -2,6 +2,7 @@
 
 function interpolate(t, order, points, knots, weights, result) {
 
+  var i,j,s,l;              // function-scoped iteration variables
   var n = points.length;    // points count
   var d = points[0].length; // point dimensionality
 
@@ -9,17 +10,17 @@ function interpolate(t, order, points, knots, weights, result) {
   if(order > n) throw new Error('order must be less than point count');
 
   if(!weights) {
-    // build weight vector
-    weights = new Array(n);
-    for(var i=0; i<n; i++) {
+    // build weight vector of length [n]
+    weights = [];
+    for(i=0; i<n; i++) {
       weights[i] = 1;
     }
   }
 
   if(!knots) {
-    // build knot vector
-    var knots = new Array(n + order);
-    for(var i=0; i<n+order; i++) {
+    // build knot vector of length [n + order]
+    var knots = [];
+    for(i=0; i<n+order; i++) {
       knots[i] = i;
     }
   } else {
@@ -38,38 +39,40 @@ function interpolate(t, order, points, knots, weights, result) {
 
   if(t < low || t > high) throw new Error('out of bounds');
 
-  for(var s=domain[0]; s<domain[1]; s++) {
+  // find s (the spline segment) for the [t] value provided
+  for(s=domain[0]; s<domain[1]; s++) {
     if(t >= knots[s] && t <= knots[s+1]) {
       break;
     }
   }
 
   // convert points to homogeneous coordinates
-  var v = new Array(n);
-  for(var i=0; i<n; i++) {
-    v[i] = new Array(d + 1);
-    for(var j=0; j<d; j++) {
+  var v = [];
+  for(i=0; i<n; i++) {
+    v[i] = [];
+    for(j=0; j<d; j++) {
       v[i][j] = points[i][j] * weights[i];
     }
     v[i][d] = weights[i];
   }
 
   // l (level) goes from 1 to the curve order
-  for(var l=1; l<=order; l++) {
+  var alpha;
+  for(l=1; l<=order; l++) {
     // build level l of the pyramid
-    for(var i=s; i>s-order+l; i--) {
-      var a = (t - knots[i]) / (knots[i+order-l] - knots[i]);
+    for(i=s; i>s-order+l; i--) {
+      alpha = (t - knots[i]) / (knots[i+order-l] - knots[i]);
 
       // interpolate each component
-      for(var j=0; j<d+1; j++) {
-        v[i][j] = (1 - a) * v[i-1][j] + a * v[i][j];
+      for(j=0; j<d+1; j++) {
+        v[i][j] = (1 - alpha) * v[i-1][j] + alpha * v[i][j];
       }
     }
   }
 
   // convert back to cartesian and return
-  var result = result || new Array(d);
-  for(var i=0; i<d; i++) {
+  var result = result || [];
+  for(i=0; i<d; i++) {
     result[i] = v[s][i] / v[s][d];
   }
 
