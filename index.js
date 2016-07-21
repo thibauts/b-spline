@@ -53,7 +53,6 @@ function interpolate(t, order, points, knots, weights, result) {
     for(j=0; j<d; j++) {
       v[i][j] = points[i][j] * weights[i];
     }
-    v[i][d] = weights[i];
   }
 
   // l (level) goes from 1 to the curve order
@@ -73,7 +72,7 @@ function interpolate(t, order, points, knots, weights, result) {
   // convert back to cartesian and return
   var result = result || [];
   for(i=0; i<d; i++) {
-    result[i] = v[s][i] / v[s][d];
+    result[i] = v[s][i] / weights[s];
   }
 
   return result;
