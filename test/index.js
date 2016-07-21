@@ -18,10 +18,9 @@ function equivalent(found, target, e) {
 function verify(description, tvalues, points, expected, order, knots, weights) {
   order = order || 3;
   var errors = [];
-  var interpolations = tvalues.map(function(t) {
+  tvalues.map(function(t) {
     return interpolate(t, order, points, knots, weights);
-  });
-  interpolations.forEach(function(v,idx) {
+  }).forEach(function(v,idx) {
     var t = expected[idx];
     if (!equivalent(v, t)) {
       errors.push([
