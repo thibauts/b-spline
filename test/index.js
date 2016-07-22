@@ -139,3 +139,35 @@ expected = [
   [  0     , -0.5    ]
 ];
 verify("non-uniform rational b-spline test", tvalues, points, expected, order, knots, weights);
+
+// test non-uniform rational curve with boosted weights
+points = [
+  [ 0.0, -0.5],
+  [-0.5, -0.5],
+  [-0.5,  0.0],
+  [-0.5,  0.5],
+  [ 0.0,  0.5],
+  [ 0.5,  0.5],
+  [ 0.5,  0.0],
+  [ 0.5, -0.5],
+  // duplicated first point
+  [ 0.0, -0.5]
+]
+knots = [0, 0, 0, 1/4, 1/4, 1/2, 1/2, 3/4, 3/4, 1, 1, 1];
+var w = 4 * Math.pow(0.5, 0.5);
+var weights = [1, w, 1, w, 1, w, 1, w, 1];
+expected = [
+  [  0     , -0.5    ],
+  [ -0.4041, -0.4574 ],
+  [ -0.4874, -0.2981 ],
+  [ -0.4874,  0.2981 ],
+  [ -0.4041,  0.4574 ],
+  [       0,  0.5    ],
+  [  0.4041,  0.4574 ],
+  [  0.4874,  0.2981 ],
+  [  0.4874, -0.2981 ],
+  [  0.4041, -0.4574 ],
+  [       0, -0.5    ]
+];
+
+verify("weight-boosted non-uniform rational b-spline test", tvalues, points, expected, order, knots, weights);
