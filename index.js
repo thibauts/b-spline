@@ -29,7 +29,7 @@ function interpolate(t, order, points, knots, weights, result) {
 
   var domain = [
     order-1,
-    knots.length-1 - (order-1)
+    knots.length - order
   ];
 
   // remap t to the domain where the spline is defined
