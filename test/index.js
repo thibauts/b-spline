@@ -1,6 +1,6 @@
 var interpolate = require('../index');
 var tvalues = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
-var order = 2;
+var degree = 2;
 
 /**
  * epsilon-based numerical equivalence for two points
@@ -15,11 +15,11 @@ function equivalent(found, target, e) {
 /**
  * verify that a particular full curve description matches the result of interpolate()
  */
-function verify(description, tvalues, points, expected, order, knots, weights) {
-  order = order || 2;
+function verify(description, tvalues, points, expected, degree, knots, weights) {
+  degree = degree || 2;
   var errors = [];
   tvalues.map(function(t) {
-    return interpolate(t, order, points, knots, weights);
+    return interpolate(t, degree, points, knots, weights);
   }).forEach(function(v,idx) {
     var t = expected[idx];
     if (!equivalent(v, t)) {
@@ -78,7 +78,7 @@ expected = [
   [  0.8, -0.16 ],
   [  1  ,  0    ]
 ];
-verify("non-uniform b-spline test", tvalues, points, expected, order, knots);
+verify("non-uniform b-spline test", tvalues, points, expected, degree, knots);
 
 
 // test closed non-uniform curvce
@@ -106,7 +106,7 @@ expected = [
   [ -0.4375,  0.3125 ],
   [  0     ,  0      ]
 ];
-verify("closed non-uniform b-spline test", tvalues, points, expected, order, knots);
+verify("closed non-uniform b-spline test", tvalues, points, expected, degree, knots);
 
 
 // test non-uniform rational curve
@@ -138,7 +138,7 @@ expected = [
   [  0.29  , -0.4069 ],
   [  0     , -0.5    ]
 ];
-verify("non-uniform rational b-spline test", tvalues, points, expected, order, knots, weights);
+verify("non-uniform rational b-spline test", tvalues, points, expected, degree, knots, weights);
 
 // test non-uniform rational curve with boosted weights
 var boosted = 4 * w;
@@ -157,4 +157,4 @@ expected = [
   [       0, -0.5    ]
 ];
 
-verify("weight-boosted non-uniform rational b-spline test", tvalues, points, expected, order, knots, weights);
+verify("weight-boosted non-uniform rational b-spline test", tvalues, points, expected, degree, knots, weights);
