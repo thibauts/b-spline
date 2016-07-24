@@ -1,12 +1,12 @@
 {
   "name": "b-spline",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "B-spline interpolation",
   "author": "thibauts",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test"
   },
   "repository": {
     "type": "git",
