@@ -1,6 +1,6 @@
 {
   "name": "b-spline",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "B-spline interpolation",
   "author": "thibauts",
   "license": "MIT",
