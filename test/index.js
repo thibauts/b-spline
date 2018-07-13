@@ -158,3 +158,21 @@ expected = [
 ];
 
 verify("weight-boosted non-uniform rational b-spline test", tvalues, points, expected, degree, knots, weights);
+
+points = [
+  [-1474.835381364233, 415.9551663966194],
+  [-1327.028226774942, 395.7560574947311],
+  [-1179.221072185651, 375.5569485928427]
+];
+knots = [ -418.7205814904043,
+  -418.7205814904043,
+  -418.7205814904043,
+  -120.3586453811225,
+  -120.3586453811225,
+  -120.3586453811225
+];
+degree = 2;
+expected = [
+  [-1179.221072185651, 375.5569485928427]
+];
+verify("floating point bounds error", [1.0], points, expected, degree, knots)
