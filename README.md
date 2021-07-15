@@ -124,7 +124,7 @@ the original control points used (discard the last repeated points).
 
 In this case, the number of points is 4 (discarded the last 3 points)
 */
-var maxT = 1.0 / (points.length - (degree + 1));
+var maxT = 1.0 - 1.0 / (points.length - (degree + 1));
 
 for(var t=0; t<1; t+=0.01) {
   var point = bspline(t * maxT, degree, points, knots);
