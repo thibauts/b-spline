@@ -99,6 +99,7 @@ var points = [
   [ 0.5, -0.5],
   [ 1.0,  0.0],
 
+  // repeat the first `degree + 1` points
   [-1.0,  0.0],
   [-0.5,  0.5],
   [ 0.5, -0.5]
@@ -112,8 +113,21 @@ var knots = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 ];
 
+/*
+Disclaimer: If you are using a unclamped knot vector
+with closed curves, you may want to remap the t value
+to properly loop the curve.
+
+To do that, remap t value from [0.0, 1.0] to
+[0.0, 1.0 - 1.0 / (n + 1)] where 'n' is the number of
+the original control points used (discard the last repeated points).
+
+In this case, the number of points is 4 (discarded the last 3 points)
+*/
+var maxT = 1.0 / (points.length - (degree + 1));
+
 for(var t=0; t<1; t+=0.01) {
-  var point = bspline(t, degree, points, knots);
+  var point = bspline(t * maxT, degree, points, knots);
 }
 ```
 
