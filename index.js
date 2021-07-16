@@ -1,7 +1,9 @@
 
 
 function interpolate(t, degree, points, knots, weights, result) {
-
+  if ((t < 0) || (t > 1)) {
+    throw new Error('t out of bounds [0,1]: ' + t);
+  }
   var i,j,s,l;              // function-scoped iteration variables
   var n = points.length;    // points count
   var d = points[0].length; // point dimensionality
@@ -36,8 +38,8 @@ function interpolate(t, degree, points, knots, weights, result) {
   var low  = knots[domain[0]];
   var high = knots[domain[1]];
   t = t * (high - low) + low;
-
-  if(t < low || t > high) throw new Error('out of bounds');
+  t = Math.max(t, low);
+  t = Math.min(t, high);
 
   // find s (the spline segment) for the [t] value provided
   for(s=domain[0]; s<domain[1]; s++) {
