@@ -77,8 +77,9 @@ var knots = [
   0, 0, 0, 1, 2, 2, 2
 ];
 
-for(var t=0; t<1; t+=0.01) {
-  var point = bspline(t, degree, points, knots);
+// To ensure that the final clamped end is reached, avoid incrementing by floating point numbers
+for(var t=0; t<=100; t+=1) {
+  var point = bspline(t/100, degree, points, knots);
 }
 ```
 
